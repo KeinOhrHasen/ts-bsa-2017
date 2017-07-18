@@ -1,7 +1,9 @@
+import { Race } from './race/race';
+
 export default class Main {
     constructor() {
-       console.log('log message');
+        const app = new Race();
     }
 }
 
-let start = new Main();
+const start = new Main();
