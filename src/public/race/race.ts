@@ -2,13 +2,13 @@ import { User, IUser } from "./user";
 
 export interface IRace{
     user: IUser
-    isFinished: boolean;
+    isDriving: boolean;
     initializeRace: () => void;
 }
 
 export class Race implements IRace {
     user: IUser;
-    isFinished = false;
+    isDriving = false;
 
     constructor(){
         this.user = new User();
@@ -21,7 +21,7 @@ export class Race implements IRace {
         const resetButton = document.getElementById('reset') as HTMLButtonElement;
 
         startButton.addEventListener('click', () => { 
-            this.isFinished = false; 
+            this.isDriving = this.isDriving ? false : true; 
             this._startRace()
         });
         resetButton.addEventListener('click', () => this._resetRase());
@@ -34,7 +34,7 @@ export class Race implements IRace {
             const { speed, move } = this.user;
             const $motorcycle = document.getElementById('motorcycle');
 
-            if(newDistance !== 100 && !this.isFinished){
+            if(newDistance !== 100 && this.isDriving){
                 move($motorcycle, newDistance);
                 newDistance++;
                 setTimeout(() => {this._startRace(newDistance)}, 1000 / speed);
@@ -45,6 +45,6 @@ export class Race implements IRace {
     private _resetRase(){
         const $motorcycle = document.getElementById('motorcycle');
         $motorcycle.style.left = '0px';
-        this.isFinished = true;
+        this.isDriving = false;
     }
 }
