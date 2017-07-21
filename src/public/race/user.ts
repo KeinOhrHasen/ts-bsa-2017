@@ -1,7 +1,7 @@
 import Driver, { IDriver } from './driver';
 
 export interface IUser extends IDriver{
-    setInfo();
+    setInfo: () => void;
 }
 
 export class User extends Driver implements IUser{
@@ -9,7 +9,7 @@ export class User extends Driver implements IUser{
         super();
     }
 
-    setInfo(){
+    setInfo(): void{
         const nameInput = document.getElementById('name') as HTMLInputElement;
         const speedInput = document.getElementById('speed') as HTMLInputElement;
 

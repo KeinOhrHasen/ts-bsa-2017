@@ -1,7 +1,7 @@
 import { User, IUser } from "./user";
 
 export interface IRace{
-    user: IUser
+    user: IUser;
     isDriving: boolean;
     initializeRace: () => void;
 }
